@@ -88,7 +88,17 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-         
+         beforeEach(function(done) {
+             loadFeed(0, function() {
+                 done();
+             });
+         });
+
+         it("is there any data in the feed", function(done){
+             let feedEntries = document.querySelector('.feed').querySelectorAll('.entry').length;
+             expect(feedEntries).toBeGreaterThan(0);
+             done();
+         });
     });
 
 
