@@ -104,10 +104,25 @@ $(function() {
 
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
+        let initialFeed;
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+         beforeEach(function(done) {
+             loadFeed(0, function() {
+                 initialFeed = document.querySelector('.feed').innerHTML;
+             });
 
+             loadFeed(1, function(){
+                 done();
+             });
+         });
+
+         it("check if content is not same for entries", function(done){
+             let newFeed = document.querySelector('.feed').innerHTML;
+             expect(initialFeed).not.toBe(newFeed);
+             done();
+         });
     });
 }());
