@@ -82,9 +82,7 @@ $(function() {
 
         /* Loads the feed asynchronously before testing for entries */
          beforeEach(function(done) {
-             loadFeed(0, function() {
-                 done();
-             });
+             loadFeed(0, done);
          });
 
 
