@@ -100,15 +100,18 @@ $(function() {
     /* Test suite to test the content of feeds */
     describe('New Feed Selection', function() {
         let initialFeed;
-
+        let newFeed;
         /* Loads first and second feed asynchronously before comparing their contents */
         beforeEach(function(done) {
              loadFeed(0, function() {
+                 /* First load initial feed asynchronously and store it in initialFeed */
                  initialFeed = document.querySelector('.feed').innerHTML;
-             });
 
-             loadFeed(1, function(){
-                 done();
+                 /* And then load the new feed asynchronously and store it in newFeed */
+                 loadFeed(1, function(){
+                     newFeed = document.querySelector('.feed').innerHTML;
+                     done();
+                 });
              });
          });
 
@@ -117,7 +120,6 @@ $(function() {
           * by the loadFeed function that the content actually changes.
           */
          it("check if content is not same for entries", function(done){
-             let newFeed = document.querySelector('.feed').innerHTML;
              expect(initialFeed).not.toBe(newFeed);
              done();
          });
